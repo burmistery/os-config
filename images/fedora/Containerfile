@@ -1,10 +1,5 @@
 FROM quay.io/fedora/fedora-bootc:44
 
-SHELL ["/bin/bash", "-c"]
-
-RUN mkdir /tmp/packages
-COPY packages/* /tmp/packages/
-
 # Base
 RUN dnf install -y \
 		bat \
