@@ -1,0 +1,20 @@
+FROM quay.io/fedora/fedora-bootc:44
+
+SHELL ["/bin/bash", "-c"]
+
+RUN mkdir /tmp/packages
+COPY packages/* /tmp/packages/
+
+RUN readarray -t packages < <(grep -vE '^\s*(#|$)' /tmp/packages/*) \
+	&& dnf install -y "${packages[@]}" \
+	&& dnf clean all \
+	&& rm -rf /tmp/packages
+
+# Niri + DMS
+RUN dnf copr enable -y avengemedia/dms \
+	&& dnf install -y \
+		niri \
+		dms \
+	&& dnf clean all
+
+RUN bootc container init
