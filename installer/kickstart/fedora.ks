@@ -10,6 +10,6 @@ autopart
 
 rootpw --lock
 
-ostreecontainer --url=dhcr.io/burmistery/os-config:fedora44
+ostreecontainer --url=dhcr.io/burmistery/os-config/fedora:latest
 
 reboot
