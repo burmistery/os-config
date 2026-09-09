@@ -1,0 +1,5 @@
+bat
+flatpak
+fzf
+kitty
+zoxide
