@@ -5,10 +5,12 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  paths:
+    - 'images/**'
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: fedora
 
 jobs:
   build:
@@ -30,8 +32,8 @@ jobs:
       - name: build and push image
         uses: docker/build-push-action@v7.3.0
         with:
-          context: .
-          file: images/fedora44/Containerfile
+          context: images/${{ env.IMAGE_NAME }}
+          file: images/${{ env.IMAGE_NAME }}/Containerfile
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
