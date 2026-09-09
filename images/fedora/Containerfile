@@ -24,4 +24,4 @@ RUN dnf copr enable -y avengemedia/dms \
 		dms \
 	&& dnf clean all
 
-RUN bootc container init
+RUN bootc container lint
