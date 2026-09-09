@@ -8,6 +8,7 @@ RUN dnf install -y \
 		kitty \
 		zoxide \
 		dnf5-plugins \
+		zsh \
 	&& dnf clean all
 
 # Work
