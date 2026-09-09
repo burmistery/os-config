@@ -5,12 +5,23 @@ SHELL ["/bin/bash", "-c"]
 RUN mkdir /tmp/packages
 COPY packages/* /tmp/packages/
 
-RUN readarray -t packages < <(grep -vE '^\s*(#|$)' /tmp/packages/*) \
-	&& dnf install -y "${packages[@]}" \
-	&& dnf clean all \
-	&& rm -rf /tmp/packages
+# Base
+RUN dnf install -y \
+		bat \
+		flatpak \
+		fzf \
+		kitty \
+		zoxide \
+	&& dnf clean all
 
-# Niri + DMS
+# Work
+RUN dnf install -y \
+		qemu \
+		distrobox \
+		podman \
+	&& dnf clean all
+
+# Desktop
 RUN dnf copr enable -y avengemedia/dms \
 	&& dnf install -y \
 		niri \
