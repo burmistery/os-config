@@ -9,11 +9,13 @@ RUN dnf install -y \
 		zoxide \
 		dnf5-plugins \
 		zsh \
+		neovim \
 	&& dnf clean all
 
 # Work
 RUN dnf install -y \
 		qemu \
+		@virtualization \
 		distrobox \
 		podman \
 	&& dnf clean all
