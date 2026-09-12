@@ -23,6 +23,8 @@ RUN dnf copr enable -y avengemedia/dms \
 	&& dnf install -y \
 		niri \
 		dms \
+
+	&& systemctl --user add-wants niri.service dms \
 	&& dnf clean all
 
 RUN bootc container lint
